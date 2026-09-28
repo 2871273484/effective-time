@@ -1,0 +1,22 @@
+[Unit]
+Description=Study Time
+After=network.target
+[Service]
+Type=simple
+User=study-time
+Group=study-time
+WorkingDirectory=/opt/study-time
+Environment=NODE_ENV=production
+Environment=HOST=0.0.0.0
+Environment=PORT=8089
+Environment=DATA_DIR=/var/lib/study-time
+ExecStart=/usr/bin/node /opt/study-time/server.mjs
+Restart=on-failure
+RestartSec=5
+StateDirectory=study-time
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+PrivateTmp=true
+[Install]
+WantedBy=multi-user.target
